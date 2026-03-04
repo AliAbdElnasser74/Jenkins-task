@@ -9,6 +9,7 @@ pipeline{
      environment {
         DOCKER_USERNAME = credentials('docker-username')
         DOCKER_PASSWORD = credentials('docker-password')
+        }
     stages {
         stage("Build Application") {
                 steps {
