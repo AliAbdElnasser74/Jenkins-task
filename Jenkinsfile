@@ -22,13 +22,13 @@ pipeline{
             }
             stage("Build image") {
                 steps {
-                    sh" docker build -t java-app:v${BUILD_NUMBER} ."
+                    sh" docker build -t depi-jenkins:v${BUILD_NUMBER} ."
                 }
             }
             stage("Push image") {
                 steps {
                     sh" docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}"
-                    sh" docker push java-app:v${BUILD_NUMBER}"
+                    sh" docker push depi-jenkins:v${BUILD_NUMBER}"
                 }
             }
     }
