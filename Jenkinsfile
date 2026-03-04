@@ -23,7 +23,7 @@ pipeline{
             }
             stage("Build image") {
                 steps {
-                    sh" docker build -t depi-jenkins:v${BUILD_NUMBER} ."
+                    sh" docker build -t AliAbdElnasser74/depi-jenkins:v${BUILD_NUMBER} ."
                 }
             }
             stage("Push image") {
