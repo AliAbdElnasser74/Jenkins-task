@@ -6,6 +6,9 @@ pipeline{
         maven "mavn-3-5-4"
         jdk "JDK-11"    
     }
+     environment {
+        DOCKER_USERNAME = credentials('docker-username')
+        DOCKER_PASSWORD = credentials('docker-password')
     stages {
         stage("Build Application") {
                 steps {
@@ -19,7 +22,13 @@ pipeline{
             }
             stage("Build image") {
                 steps {
-                    sh" docker build -t java-app:${BUILD_NUMBER} ."
+                    sh" docker build -t java-app:v${BUILD_NUMBER} ."
+                }
+            }
+            stage("Push image") {
+                steps {
+                    sh" docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}"
+                    sh" docker push java-app:v${BUILD_NUMBER}"
                 }
             }
     }
