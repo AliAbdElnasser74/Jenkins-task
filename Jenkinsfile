@@ -6,14 +6,16 @@ pipeline{
         maven "mavn-3-5-4"
         jdk "JDK-11"    
     }
-     environment {
+    environment {
         DOCKER_USERNAME = credentials('docker-username')
         DOCKER_PASSWORD = credentials('docker-password')
-        }
+        DEPI_ROUND = "R4"
+    }
     stages {
         stage("Build Application") {
                 steps {
                     sh "mvn package install -DskipTests"
+                    sh "echo ${DEPI_ROUND}"
                 }
             }
           stage("Test Application") {
