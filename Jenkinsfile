@@ -30,8 +30,8 @@ pipeline{
             }
             stage("Push image") {
                 steps {
-                    sh "echo ${DOCKER_PASSWORD} | docker login -u ${DOCKER_USERNAME} --password-stdin"
-                    sh" docker push ${DOCKER_USERNAME}/depi-jenkins:v${BUILD_NUMBER}"
+                    sh 'echo ${DOCKER_PASSWORD} | docker login -u ${DOCKER_USERNAME} --password-stdin'
+                    sh "docker push ${DOCKER_USERNAME}/depi-jenkins:v${BUILD_NUMBER}"
                 }
             }
     }
