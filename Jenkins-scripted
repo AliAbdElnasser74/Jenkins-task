@@ -2,7 +2,7 @@ node("agent-01"){
     def javaJDK = tool name: 'JDK-11', type: 'jdk'
     def maven = tool name: 'mavn-3-5-4', type: 'maven'
     stage("checkout SCM"){
-        sh'echo'"not now"'
+        sh'echo"not now"'
     }
     stage("Build Application") {
             sh "mvn package install -DskipTests"
