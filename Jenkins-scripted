@@ -1,10 +1,11 @@
 node("agent-01"){
     def javaJDK = tool name: 'JDK-11', type: 'jdk'
-    def maven = tool name: 'mavn-3-5-4', type: 'maven'
+    def maven = tool name: 'maven-3-5-4', type: 'maven'
     env.PATH = "${maven}/bin:${env.PATH}"
+
     stage("checkout SCM"){
         sh 'echo "not now"'
-         }
+        }
     stage("Build Application") {
             echo "${javaJdk}"
             echo "${maven}"
@@ -18,7 +19,7 @@ node("agent-01"){
             sh "docker build -t ${DOCKER_USERNAME}/depi-jenkins:v${BUILD_NUMBER} ."
     }
     stage("Push image") {
-            sh 'echo ${DOCKER_PASSWORD} | docker login -u ${DOCKER_USERNAME} --password-stdin'
-            sh 'docker push ${DOCKER_USERNAME}/depi-jenkins:v${BUILD_NUMBER}'
+            sh "echo ${DOCKER_PASSWORD} | docker login -u ${DOCKER_USERNAME} --password-stdin"
+            sh "docker push ${DOCKER_USERNAME}/depi-jenkins:v${BUILD_NUMBER}"
     }
 }
