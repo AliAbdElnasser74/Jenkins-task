@@ -7,10 +7,10 @@ node("agent-01"){
         sh 'echo "not now"'
         }
     stage("Build Application") {
-            echo "${javaJdk}"
-            echo "${maven}"
-            echo "${env.PATH}"
-            sh "mvn package install -DskipTests"
+        echo "${javaJdk}"
+        echo "${maven}"
+        echo "${env.PATH}"
+        sh "mvn package install -DskipTests"
     }
     stage("Test Application") {
             sh "mvn test"
